@@ -15,37 +15,11 @@ namespace BST
             this.CurrentElement = FirstElementOfTree;
         }
 
-        public void Add(int element)
+        /*public void Add(int element)
         {
             if (element < this.CurrentElement) this.GoLeft(element);
             if (element > this.CurrentElement) this.GoRight(element);
-
         }
-
-        public bool DoesTreeContain(int value)
-        {
-            if (value == this.CurrentElement)
-            {
-                return true;
-            }
-            else if (value < this.CurrentElement && this.LeftElement != null)
-            {
-                this.LeftElement.DoesTreeContain(value);
-                return false;
-            }
-            else if( value > this.CurrentElement && this.RightElement != null)
-            {
-                this.RightElement.DoesTreeContain(value);
-                return false;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        //private bool GoLeft(int element) => this.CurrentElement > element;
-        //private bool GoRight(int element) => this.CurrentElement < element;
 
         private void GoLeft(int element)
         {
@@ -78,6 +52,51 @@ namespace BST
                 this.RightElement = new BST(element);
             }
         }
+        */
+
+        public void Add(int element)
+        {
+            if(this.CurrentElement > element)
+            {
+                if (this.LeftElement != null) this.LeftElement.Add(element);
+                else this.LeftElement = new BST(element);
+            }
+            else if(this.CurrentElement < element)
+            {
+                if (this.RightElement != null) this.RightElement.Add(element);
+                else this.RightElement = new BST(element);
+            }
+        }
+
+        public bool DoesTreeContain(int value)
+        {
+            if (value == this.CurrentElement)
+            {
+                return true;
+            }
+            else if (value < this.CurrentElement && this.LeftElement != null)
+            {
+                return this.LeftElement.DoesTreeContain(value);
+            }
+            else if (value > this.CurrentElement && this.RightElement != null)
+            {
+                return this.RightElement.DoesTreeContain(value);
+            }
+            else return false;
+        }
+
+        public void PrintTree()
+        {
+            if (this.LeftElement != null) this.LeftElement.PrintTree();
+            Console.WriteLine(this.CurrentElement);
+            if (this.RightElement != null) this.RightElement.PrintTree();
+        }
+
+
+
+        //private bool GoLeft(int element) => this.CurrentElement > element;
+        //private bool GoRight(int element) => this.CurrentElement < element;
+
 
         /*public int[] TreeElements()
         {
@@ -85,6 +104,8 @@ namespace BST
             int previous;
 
         }*/
+
+
 
         public int FirstElement()
         {

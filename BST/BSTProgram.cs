@@ -12,11 +12,12 @@ namespace BST
             tree.Add(17);
             tree.Add(6);
             tree.Add(14);
-            tree.DoesTreeContain(11);
+            tree.DoesTreeContain(114);
 
             Console.WriteLine(tree.FirstElement()); // 6  
             Console.WriteLine(tree.LastElement()); // 17
             Console.WriteLine(tree.DoesTreeContain(11)); // True
+            tree.PrintTree();
         }
     }
 }
