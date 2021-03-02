@@ -22,6 +22,28 @@ namespace BST
 
         }
 
+        public bool DoesTreeContain(int value)
+        {
+            if (value == this.CurrentElement)
+            {
+                return true;
+            }
+            else if (value < this.CurrentElement && this.LeftElement != null)
+            {
+                this.LeftElement.DoesTreeContain(value);
+                return false;
+            }
+            else if( value > this.CurrentElement && this.RightElement != null)
+            {
+                this.RightElement.DoesTreeContain(value);
+                return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         //private bool GoLeft(int element) => this.CurrentElement > element;
         //private bool GoRight(int element) => this.CurrentElement < element;
 
@@ -66,7 +88,14 @@ namespace BST
 
         public int FirstElement()
         {
+
             return this.LeftElement == null ? this.CurrentElement : this.LeftElement.FirstElement();
+        }
+
+        public int LastElement()
+        {
+
+            return this.RightElement == null ? this.CurrentElement : this.RightElement.LastElement();
         }
 
     }
