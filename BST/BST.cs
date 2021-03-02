@@ -88,7 +88,7 @@ namespace BST
         public void PrintTree()
         {
             if (this.LeftElement != null) this.LeftElement.PrintTree();
-            Console.WriteLine(this.CurrentElement);
+            Console.Write($"{this.CurrentElement} ");
             if (this.RightElement != null) this.RightElement.PrintTree();
         }
 
