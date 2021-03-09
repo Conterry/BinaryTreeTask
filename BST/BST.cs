@@ -8,60 +8,21 @@ namespace BST
     {
         private BST LeftElement;
         private BST RightElement;
-        private int CurrentElement;
+        private int CurrentValue;
 
         public BST(int FirstElementOfTree)
         {
-            this.CurrentElement = FirstElementOfTree;
+            this.CurrentValue = FirstElementOfTree;
         }
-
-        /*public void Add(int element)
-        {
-            if (element < this.CurrentElement) this.GoLeft(element);
-            if (element > this.CurrentElement) this.GoRight(element);
-        }
-
-        private void GoLeft(int element)
-        {
-            if ((element < this.CurrentElement) && (this.LeftElement!=null))
-            {
-                this.LeftElement.GoLeft(element);
-            }
-            else if((element > this.CurrentElement) && (this.LeftElement != null))
-            {
-                this.LeftElement.GoRight(element);
-            }
-            else
-            {
-                this.LeftElement = new BST(element);
-            }
-        }
-
-        private void GoRight(int element)
-        {
-            if ((element < this.CurrentElement) && (this.RightElement!=null))
-            {
-                this.RightElement.GoLeft(element);
-            }
-            else if ((element > this.CurrentElement) && (this.RightElement != null))
-            {
-                this.RightElement.GoRight(element);
-            }
-            else
-            {
-                this.RightElement = new BST(element);
-            }
-        }
-        */
 
         public void Add(int element)
         {
-            if(this.CurrentElement > element)
+            if(this.CurrentValue > element)
             {
                 if (this.LeftElement != null) this.LeftElement.Add(element);
                 else this.LeftElement = new BST(element);
             }
-            else if(this.CurrentElement < element)
+            else if(this.CurrentValue < element)
             {
                 if (this.RightElement != null) this.RightElement.Add(element);
                 else this.RightElement = new BST(element);
@@ -70,15 +31,15 @@ namespace BST
 
         public bool DoesTreeContain(int value)
         {
-            if (value == this.CurrentElement)
+            if (value == this.CurrentValue)
             {
                 return true;
             }
-            else if (value < this.CurrentElement && this.LeftElement != null)
+            else if (value < this.CurrentValue && this.LeftElement != null)
             {
                 return this.LeftElement.DoesTreeContain(value);
             }
-            else if (value > this.CurrentElement && this.RightElement != null)
+            else if (value > this.CurrentValue && this.RightElement != null)
             {
                 return this.RightElement.DoesTreeContain(value);
             }
@@ -88,35 +49,21 @@ namespace BST
         public void PrintTree()
         {
             if (this.LeftElement != null) this.LeftElement.PrintTree();
-            Console.Write($"{this.CurrentElement} ");
+            Console.Write($"{this.CurrentValue} ");
             if (this.RightElement != null) this.RightElement.PrintTree();
         }
-
-
-
-        //private bool GoLeft(int element) => this.CurrentElement > element;
-        //private bool GoRight(int element) => this.CurrentElement < element;
-
-
-        /*public int[] TreeElements()
-        {
-            List<int> Elements = new List<int>();
-            int previous;
-
-        }*/
-
 
 
         public int FirstElement()
         {
 
-            return this.LeftElement == null ? this.CurrentElement : this.LeftElement.FirstElement();
+            return this.LeftElement == null ? this.CurrentValue : this.LeftElement.FirstElement();
         }
 
         public int LastElement()
         {
 
-            return this.RightElement == null ? this.CurrentElement : this.RightElement.LastElement();
+            return this.RightElement == null ? this.CurrentValue : this.RightElement.LastElement();
         }
 
     }
