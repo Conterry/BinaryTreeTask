@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BST
 {
-    public class BST
+    public class BST: IEnumerable
     {
         private BST LeftElement;
         private BST RightElement;
@@ -52,6 +53,47 @@ namespace BST
             Console.Write($"{this.CurrentValue} ");
             if (this.RightElement != null) this.RightElement.PrintTree();
         }
+
+
+        private int[] ArrayOfTree()
+        {
+            List<int> list = new List<int>();
+            ListOfTree(ref list);
+            int[] arr = new int[list.Count];
+            for(int i=0; i<arr.Length; i++)
+            {
+                arr[i] = list[i];
+            }
+            return arr;
+        }
+
+        private void ListOfTree(ref List<int> list)
+        {
+            if (this.LeftElement != null) this.LeftElement.ListOfTree(ref list);
+            list.Add(this.CurrentValue);
+            if (this.RightElement != null) this.RightElement.ListOfTree(ref list);
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            int[] arr = ArrayOfTree();
+            for(int i=0; i<arr.Length; i++)
+            {
+                yield return arr[i];
+            }
+        }
+
+
+        /*public IEnumerator GetEnumerator()
+        {
+            yield return GlobalCell.Current;
+            Cell<T> cell = GlobalCell.GetPreviousCell();
+            for (int i = 0; i < CountOfCells - 1; i++)
+            {
+                yield return cell.Current;
+                cell = cell.GetPreviousCell();
+            }
+        }*/
 
 
         public int FirstElement()
