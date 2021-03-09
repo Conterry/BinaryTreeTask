@@ -84,18 +84,6 @@ namespace BST
         }
 
 
-        /*public IEnumerator GetEnumerator()
-        {
-            yield return GlobalCell.Current;
-            Cell<T> cell = GlobalCell.GetPreviousCell();
-            for (int i = 0; i < CountOfCells - 1; i++)
-            {
-                yield return cell.Current;
-                cell = cell.GetPreviousCell();
-            }
-        }*/
-
-
         public int FirstElement()
         {
 
